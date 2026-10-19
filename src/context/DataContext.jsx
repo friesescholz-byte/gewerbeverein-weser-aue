@@ -123,7 +123,7 @@ export function DataProvider({ children }) {
 
     const data = await res.json();
     if (!res.ok || !data.success) {
-      throw new Error(data.error || 'Speichern in Cloudflare KV fehlgeschlagen');
+      throw new Error(data.error || 'Speichern fehlgeschlagen');
     }
 
     // State synchronisieren
@@ -156,7 +156,7 @@ export function DataProvider({ children }) {
 
     const data = await res.json();
     if (!res.ok || !data.success) {
-      throw new Error(data.error || 'Upload nach Cloudflare R2 fehlgeschlagen');
+      throw new Error(data.error || 'Datei-Upload fehlgeschlagen');
     }
     return data.url;
   };

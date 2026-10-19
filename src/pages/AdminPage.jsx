@@ -145,8 +145,8 @@ export default function AdminPage({ onNavigate }) {
               Admin-Dashboard Login
             </h1>
             <p className="text-xs text-[#0B192C]/65">
-              Alle Änderungen im Dashboard werden direkt in Cloudflare KV & R2 gespeichert und sind
-              sofort auf allen Endgeräten aktiv.
+              Alle Änderungen im Dashboard werden direkt online gespeichert und sind
+              sofort für alle Besucher sichtbar.
             </p>
           </div>
 
@@ -201,7 +201,7 @@ export default function AdminPage({ onNavigate }) {
         : [editingNews, ...news];
       await saveKeyToKV('news', updated, token);
       setEditingNews(null);
-      showToast('Beitrag dauerhaft in Cloudflare KV gespeichert!');
+      showToast('Beitrag erfolgreich gespeichert!');
     } catch (err) {
       showToast(err.message, true);
     } finally {
@@ -215,7 +215,7 @@ export default function AdminPage({ onNavigate }) {
       setSaving(true);
       const updated = news.filter((n) => n.id !== id);
       await saveKeyToKV('news', updated, token);
-      showToast('Beitrag aus Cloudflare KV gelöscht.');
+      showToast('Beitrag erfolgreich gelöscht.');
     } catch (err) {
       showToast(err.message, true);
     } finally {
@@ -232,7 +232,7 @@ export default function AdminPage({ onNavigate }) {
         ...editingNews,
         images: [...(editingNews.images || []), r2Url]
       });
-      showToast('Bild als WebP nach Cloudflare R2 hochgeladen!');
+      showToast('Bild erfolgreich hochgeladen!');
     } catch (err) {
       showToast(err.message, true);
     } finally {
@@ -252,7 +252,7 @@ export default function AdminPage({ onNavigate }) {
         : [...events, editingEvent];
       await saveKeyToKV('events', updated, token);
       setEditingEvent(null);
-      showToast('Termin dauerhaft in Cloudflare KV gespeichert!');
+      showToast('Termin erfolgreich gespeichert!');
     } catch (err) {
       showToast(err.message, true);
     } finally {
@@ -266,7 +266,7 @@ export default function AdminPage({ onNavigate }) {
       setSaving(true);
       const updated = events.filter((ev) => ev.id !== id);
       await saveKeyToKV('events', updated, token);
-      showToast('Termin aus Cloudflare KV gelöscht.');
+      showToast('Termin erfolgreich gelöscht.');
     } catch (err) {
       showToast(err.message, true);
     } finally {
@@ -286,7 +286,7 @@ export default function AdminPage({ onNavigate }) {
         : [editingMember, ...members];
       await saveKeyToKV('members', updated, token);
       setEditingMember(null);
-      showToast('Mitgliedsbetrieb dauerhaft in Cloudflare KV gespeichert!');
+      showToast('Mitgliedsbetrieb erfolgreich gespeichert!');
     } catch (err) {
       showToast(err.message, true);
     } finally {
@@ -300,7 +300,7 @@ export default function AdminPage({ onNavigate }) {
       setSaving(true);
       const updated = members.filter((m) => m.id !== id);
       await saveKeyToKV('members', updated, token);
-      showToast('Mitglied aus Cloudflare KV entfernt.');
+      showToast('Mitgliedsbetrieb erfolgreich entfernt.');
     } catch (err) {
       showToast(err.message, true);
     } finally {
@@ -314,7 +314,7 @@ export default function AdminPage({ onNavigate }) {
       setUploading(true);
       const r2Url = await uploadFileToR2(file, 'logos', token);
       setEditingMember({ ...editingMember, logo: r2Url });
-      showToast('Firmenlogo als WebP in Cloudflare R2 gespeichert!');
+      showToast('Firmenlogo erfolgreich hochgeladen!');
     } catch (err) {
       showToast(err.message, true);
     } finally {
@@ -334,7 +334,7 @@ export default function AdminPage({ onNavigate }) {
         : [...board, editingBoard];
       await saveKeyToKV('board', updated, token);
       setEditingBoard(null);
-      showToast('Vorstandsdaten dauerhaft in Cloudflare KV gespeichert!');
+      showToast('Vorstandsdaten erfolgreich gespeichert!');
     } catch (err) {
       showToast(err.message, true);
     } finally {
@@ -372,7 +372,7 @@ export default function AdminPage({ onNavigate }) {
       const updated = [newEntry, ...wiwaGallery];
       await saveKeyToKV('wiwa_gallery', updated, token);
       setNewWiwaPhoto({ ...newWiwaPhoto, caption: '' });
-      showToast('WiWA-Foto in R2 hochgeladen & in Cloudflare KV gespeichert!');
+      showToast('Foto erfolgreich zur WiWA-Galerie hinzugefügt!');
     } catch (err) {
       showToast(err.message, true);
     } finally {
@@ -400,7 +400,7 @@ export default function AdminPage({ onNavigate }) {
     try {
       setSaving(true);
       await saveKeyToKV('settings', settingsDraft, token);
-      showToast('Vereinseinstellungen & Platzhalter dauerhaft in Cloudflare KV gespeichert!');
+      showToast('Vereinseinstellungen erfolgreich gespeichert!');
     } catch (err) {
       showToast(err.message, true);
     } finally {
@@ -416,7 +416,7 @@ export default function AdminPage({ onNavigate }) {
       const updatedSettings = { ...settingsDraft, [fieldName]: r2Url };
       setSettingsDraft(updatedSettings);
       await saveKeyToKV('settings', updatedSettings, token);
-      showToast('PDF-Dokument in Cloudflare R2 hochgeladen & in KV verknüpft!');
+      showToast('Dokument erfolgreich hochgeladen!');
     } catch (err) {
       showToast(err.message, true);
     } finally {
@@ -448,7 +448,7 @@ export default function AdminPage({ onNavigate }) {
         s.id === sub.id ? { ...s, status: 'Aufgenommen' } : s
       );
       await saveKeyToKV('submissions', updatedSubs, token);
-      showToast(`${newMem.name} wurde direkt als Mitglied in Cloudflare KV übernommen!`);
+      showToast(`${newMem.name} wurde erfolgreich als Mitglied übernommen!`);
     } catch (err) {
       showToast(err.message, true);
     } finally {
@@ -497,7 +497,7 @@ export default function AdminPage({ onNavigate }) {
         <div className="space-y-1">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#26890D]">
             <Database className="w-4 h-4" strokeWidth={1.5} />
-            <span>Cloudflare KV & R2 Cloud-Speicher aktiv (Kein Browser-LocalStorage)</span>
+            <span>Zentrale Datenverwaltung aktiv</span>
           </div>
           <h1 className="font-editorial text-3xl sm:text-4xl text-[#0B192C]">
             Vorstands- & Admin-Dashboard
@@ -655,10 +655,10 @@ export default function AdminPage({ onNavigate }) {
                 </div>
                 <div>
                   <label className="block text-xs font-semibold mb-1">
-                    Foto hochladen (wird automatisch als WebP in R2 gespeichert)
+                    Foto hochladen (Beitragsbild)
                   </label>
                   <label className="flex items-center justify-between px-3.5 py-2.5 rounded-lg border border-dashed border-[#083476] bg-[#FBF9F5] cursor-pointer text-xs font-semibold text-[#083476]">
-                    <span>{uploading ? 'Lädt nach R2 hoch...' : '+ Bild zu R2 hochladen'}</span>
+                    <span>{uploading ? 'Lädt hoch...' : '+ Bild hochladen'}</span>
                     <Upload className="w-4 h-4" strokeWidth={1.5} />
                     <input
                       type="file"
@@ -725,7 +725,7 @@ export default function AdminPage({ onNavigate }) {
                 className="px-5 py-2.5 rounded-lg bg-[#26890D] text-white text-xs font-semibold inline-flex items-center gap-2"
               >
                 <Save className="w-4 h-4" strokeWidth={1.5} />
-                <span>{saving ? 'Speichert in KV...' : 'In Cloudflare KV speichern'}</span>
+                <span>{saving ? 'Speichert...' : 'Beitrag speichern'}</span>
               </button>
             </form>
           )}
@@ -883,7 +883,7 @@ export default function AdminPage({ onNavigate }) {
                 className="px-5 py-2.5 rounded-lg bg-[#26890D] text-white text-xs font-semibold inline-flex items-center gap-2"
               >
                 <Save className="w-4 h-4" strokeWidth={1.5} />
-                <span>In Cloudflare KV speichern</span>
+                <span>{saving ? 'Speichert...' : 'Termin speichern'}</span>
               </button>
             </form>
           )}
@@ -1075,7 +1075,7 @@ export default function AdminPage({ onNavigate }) {
                 </div>
                 <div>
                   <label className="block text-xs font-semibold mb-1">
-                    Firmenlogo (Upload nach R2)
+                    Firmenlogo (Upload)
                   </label>
                   <label className="flex items-center justify-between px-3 py-2 rounded-lg border border-dashed border-[#083476] bg-[#FBF9F5] cursor-pointer text-xs font-semibold text-[#083476]">
                     <span>{uploading ? 'Lädt hoch...' : 'Logo auswählen & hochladen'}</span>
@@ -1108,7 +1108,7 @@ export default function AdminPage({ onNavigate }) {
                 className="px-5 py-2.5 rounded-lg bg-[#26890D] text-white text-xs font-semibold inline-flex items-center gap-2"
               >
                 <Save className="w-4 h-4" strokeWidth={1.5} />
-                <span>Mitglied in Cloudflare KV speichern</span>
+                <span>{saving ? 'Speichert...' : 'Mitgliedsbetrieb speichern'}</span>
               </button>
             </form>
           )}
@@ -1281,7 +1281,7 @@ export default function AdminPage({ onNavigate }) {
                   className="px-5 py-2.5 rounded-lg bg-[#26890D] text-white text-xs font-semibold inline-flex items-center gap-2"
                 >
                   <Save className="w-4 h-4" />
-                  <span>In Cloudflare KV speichern</span>
+                  <span>{saving ? 'Speichert...' : 'Vorstandsmitglied speichern'}</span>
                 </button>
                 <button
                   type="button"
@@ -1332,7 +1332,7 @@ export default function AdminPage({ onNavigate }) {
         <div className="space-y-6">
           <div className="rounded-2xl border border-[#E5E0D5] bg-white p-6 space-y-4">
             <h2 className="font-editorial text-3xl text-[#0B192C]">
-              Neues Foto zur WiWA-Galerie hochladen (R2 + KV)
+              Neues Foto zur WiWA-Galerie hochladen
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
               <div>
@@ -1366,7 +1366,7 @@ export default function AdminPage({ onNavigate }) {
               <div>
                 <label className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#083476] hover:bg-[#0B192C] text-white text-xs font-semibold cursor-pointer">
                   <Upload className="w-4 h-4" />
-                  <span>{uploading ? 'Konvertiert & lädt nach R2...' : 'Foto auswählen & hochladen'}</span>
+                  <span>{uploading ? 'Wird hochgeladen...' : 'Foto auswählen & hochladen'}</span>
                   <input
                     type="file"
                     accept="image/*"
@@ -1416,11 +1416,11 @@ export default function AdminPage({ onNavigate }) {
         <form onSubmit={handleSaveSettings} className="space-y-8">
           <div className="rounded-2xl border border-[#E5E0D5] bg-white p-6 sm:p-8 space-y-6">
             <h2 className="font-editorial text-3xl text-[#0B192C]">
-              Offizielle PDF-Dokumente in Cloudflare R2 hinterlegen
+              Offizielle PDF-Dokumente hinterlegen
             </h2>
             <p className="text-sm text-[#0B192C]/70">
               Laden Sie hier die neue Vereinssatzung, das neue Beitrittsformular oder die
-              WiWA-Anmeldeunterlagen als PDF hoch. Die Dokumente werden sofort in R2 gespeichert und
+              WiWA-Anmeldeunterlagen als PDF hoch. Die Dokumente werden sofort gespeichert und
               auf der Website verknüpft.
             </p>
 
@@ -1446,7 +1446,7 @@ export default function AdminPage({ onNavigate }) {
                 )}
                 <label className="w-full py-2 px-3 rounded-lg bg-white border border-[#E5E0D5] hover:border-[#083476] text-xs font-semibold text-[#083476] flex items-center justify-center gap-1.5 cursor-pointer">
                   <Upload className="w-3.5 h-3.5" />
-                  <span>Satzung-PDF nach R2 hochladen</span>
+                  <span>Satzung (PDF) hochladen</span>
                   <input
                     type="file"
                     accept=".pdf"
@@ -1479,7 +1479,7 @@ export default function AdminPage({ onNavigate }) {
                 )}
                 <label className="w-full py-2 px-3 rounded-lg bg-white border border-[#E5E0D5] hover:border-[#083476] text-xs font-semibold text-[#083476] flex items-center justify-center gap-1.5 cursor-pointer">
                   <Upload className="w-3.5 h-3.5" />
-                  <span>Beitritts-PDF nach R2 hochladen</span>
+                  <span>Mitgliedsantrag (PDF) hochladen</span>
                   <input
                     type="file"
                     accept=".pdf"
@@ -1512,7 +1512,7 @@ export default function AdminPage({ onNavigate }) {
                 )}
                 <label className="w-full py-2 px-3 rounded-lg bg-white border border-[#E5E0D5] hover:border-[#083476] text-xs font-semibold text-[#083476] flex items-center justify-center gap-1.5 cursor-pointer">
                   <Upload className="w-3.5 h-3.5" />
-                  <span>WiWA-PDF nach R2 hochladen</span>
+                  <span>WiWA-Anmeldung (PDF) hochladen</span>
                   <input
                     type="file"
                     accept=".pdf"
@@ -1625,7 +1625,7 @@ export default function AdminPage({ onNavigate }) {
               className="px-6 py-3 rounded-lg bg-[#26890D] hover:bg-[#1D6B0A] text-white text-xs font-semibold inline-flex items-center gap-2"
             >
               <Save className="w-4 h-4" />
-              <span>Alle Einstellungen dauerhaft in Cloudflare KV speichern</span>
+              <span>{saving ? 'Speichert...' : 'Alle Einstellungen speichern'}</span>
             </button>
           </div>
         </form>
@@ -1643,7 +1643,7 @@ export default function AdminPage({ onNavigate }) {
           {submissions.length === 0 ? (
             <div className="p-10 rounded-2xl border border-[#E5E0D5] bg-white text-center text-sm text-[#0B192C]/60">
               Noch keine Online-Einsendungen vorhanden. Sobald jemand das Beitritts- oder
-              WiWA-Formular absendet, erscheint der Eintrag inklusive hochgeladener R2-Dokumente
+              WiWA-Formular absendet, erscheint der Eintrag inklusive beigefügter Dokumente
               hier.
             </div>
           ) : (
@@ -1721,7 +1721,7 @@ export default function AdminPage({ onNavigate }) {
                         className="inline-flex items-center gap-2 text-xs font-semibold text-[#083476] underline"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
-                        <span>Hochgeladenes Dokument (Cloudflare R2) öffnen</span>
+                        <span>Beigefügtes Dokument öffnen</span>
                       </a>
                     </div>
                   )}
