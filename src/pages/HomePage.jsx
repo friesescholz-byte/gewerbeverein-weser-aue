@@ -1,6 +1,6 @@
 import React from 'react';
 import { useData } from '../context/DataContext';
-import { WESERSCHLEIFE_IMAGE_URL } from '../data/initialData';
+import { WESERSCHLEIFE_IMAGE_URL, VORSTAND_TEAM_IMAGE_URL } from '../data/initialData';
 
 export default function HomePage({ onNavigate, onSelectNews }) {
   const { members, news, events } = useData();
@@ -12,6 +12,15 @@ export default function HomePage({ onNavigate, onSelectNews }) {
     <div>
       {/* Hero Section */}
       <section className="hero">
+        {/* Rechter Hintergrund: Das neue Vorstandsbild */}
+        <div className="hero-bg-right" aria-hidden="true"></div>
+
+        {/* Linke blaue Form mit dem alten Landschaftsbild darunter (exakter Cut an der Kante) */}
+        <div className="hero-shape-left" aria-hidden="true">
+          <div className="hero-shape-bg"></div>
+          <div className="hero-shape-overlay"></div>
+        </div>
+
         <div className="container hero-container">
           <div className="hero-content">
             <h1 className="hero-title">Ein starkes Netzwerk für die Wirtschaft in der Weser-Aue</h1>

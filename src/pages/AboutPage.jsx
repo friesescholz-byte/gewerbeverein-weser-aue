@@ -1,5 +1,6 @@
 import React from 'react';
 import { useData } from '../context/DataContext';
+import { VORSTAND_TEAM_WIDE_IMAGE_URL } from '../data/initialData';
 
 export default function AboutPage({ onOpenLegal }) {
   const { board, members } = useData();
@@ -17,13 +18,24 @@ export default function AboutPage({ onOpenLegal }) {
 
   return (
     <div>
-      {/* Page Hero */}
-      <section className="page-hero">
+      {/* Page Hero mit großem breiten Vorstandsfoto unter dem Textblock */}
+      <section className="page-hero page-hero-with-image">
         <div className="container">
           <h1 className="page-title">Über uns & Vorstand</h1>
           <p className="page-subtitle">
             Das Unternehmernetzwerk Weser-Aue e.V. verbindet Tradition und Aufbruch: Wir vernetzen die Wirtschaft vor Ort, vertreten gemeinsame Standortinteressen und fördern den direkten Dialog in unserer Samtgemeinde.
           </p>
+
+          {/* Großes breites Vorstandsfoto ohne Textüberlagerung */}
+          <div className="about-hero-showcase">
+            <div className="about-hero-image-card">
+              <img
+                src={VORSTAND_TEAM_WIDE_IMAGE_URL}
+                alt="Der Vorstand des Unternehmernetzwerks Weser-Aue e.V."
+                className="about-hero-image"
+              />
+            </div>
+          </div>
         </div>
       </section>
 

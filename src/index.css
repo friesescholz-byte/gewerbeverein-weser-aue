@@ -297,34 +297,63 @@ img {
   display: flex;
   align-items: center;
   background-color: var(--secondary);
-  background-image: url('https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/gewerbeverein-weser-aue/region/region_weser_aue_hero.webp');
-  background-size: cover;
-  background-position: right center;
-  background-attachment: fixed;
   padding-top: 90px;
   padding-bottom: 150px;
   overflow: hidden;
 }
 
-/* Dynamische, diagonale Designer-Form über das gesamte Bild */
-.hero::before {
-  content: '';
+/* Rechter Hintergrund: Das neue Vorstandsbild */
+.hero-bg-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 56%;
+  height: 100%;
+  background-image: url('https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/gewerbeverein-weser-aue/vorstand_team.webp');
+  background-size: cover;
+  background-position: center 35%;
+  z-index: 0;
+}
+
+/* Linke diagonale Designer-Form: Exakter Cut an der Kante ohne Verlauf */
+.hero-shape-left {
   position: absolute;
   top: 0;
   left: 0;
   width: 58%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(22, 33, 52, 0.92) 0%, rgba(8, 52, 118, 0.72) 100%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
-  z-index: 0;
-  border-right: 2px solid rgba(255, 255, 255, 0.2);
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Altes Landschaftsbild auf der linken Seite */
+.hero-shape-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/gewerbeverein-weser-aue/region/region_weser_aue_hero.webp');
+  background-size: cover;
+  background-position: left center;
+}
+
+/* Blaue Tönung & Frosting auf der linken Form */
+.hero-shape-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(22, 33, 52, 0.94) 0%, rgba(8, 52, 118, 0.78) 100%);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .hero-container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
 }
 
@@ -917,6 +946,51 @@ img {
   max-width: 650px;
   margin: 0 auto;
   color: rgba(255, 255, 255, 0.92);
+}
+
+/* --- ABOUT HERO SHOWCASE (Groß & Breit unter Textblock, ohne Textüberlagerung) --- */
+.page-hero-with-image {
+  padding-bottom: 90px !important;
+}
+
+.about-hero-showcase {
+  margin-top: 44px;
+  width: 100%;
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.about-hero-image-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 30px 65px -15px rgba(0, 0, 0, 0.6), 0 0 35px rgba(8, 52, 118, 0.25);
+  background: rgba(11, 25, 44, 0.6);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-hero-image-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 35px 75px -15px rgba(0, 0, 0, 0.7);
+}
+
+.about-hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .about-hero-showcase {
+    margin-top: 28px;
+  }
+  .about-hero-image-card {
+    border-radius: 14px;
+  }
 }
 
 /* --- AKTUELLES PAGE --- */
@@ -1883,7 +1957,7 @@ img {
 
 /* --- RESPONSIVE DESIGN --- */
 @media (max-width: 992px) {
-  .hero::before {
+  .hero-shape-left {
     width: 100%;
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
   }
@@ -1947,7 +2021,7 @@ img {
     background-attachment: scroll;
   }
 
-  .hero::before {
+  .hero-shape-left {
     clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
   }
 

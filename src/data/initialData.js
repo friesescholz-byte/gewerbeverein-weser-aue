@@ -5,6 +5,8 @@ export const LOGO_URL = "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/gew
 export const HEADER_LOGO_URL = "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/gewerbeverein-weser-aue/Unternetzwerk_Logo_Text_02.webp";
 export const FAVICON_URL = "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/gewerbeverein-weser-aue/Unternetzwerk_Flavicon_01.webp";
 export const WESERSCHLEIFE_IMAGE_URL = "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/gewerbeverein-weser-aue/region/weserschleife_golden_hour.webp";
+export const VORSTAND_TEAM_IMAGE_URL = "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/gewerbeverein-weser-aue/vorstand_team.webp";
+export const VORSTAND_TEAM_WIDE_IMAGE_URL = "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/gewerbeverein-weser-aue/vorstand_team_wide.webp";
 
 export const REGION_IMAGES = {
   "weserschleife_golden_hour.webp": "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/gewerbeverein-weser-aue/region/weserschleife_golden_hour.webp",
